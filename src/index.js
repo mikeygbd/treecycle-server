@@ -13,15 +13,12 @@ app.use(bodyParser.json());
 app.use(authRoutes);
 app.use(treeRoutes);
 
-const mongoUri = '';
-if (!mongoUri) {
-  throw new Error(
-    `MongoURI was not supplied.  Make sure you watch the video on setting up Mongo DB!`
-  );
-}
+const mongoUri = 'mongodb+srv://admin:jingel56@treecycle0-dhejh.mongodb.net/test?retryWrites=true&w=majority';
+
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
-  useCreateIndex: true
+  useCreateIndex: true,
+  useUnifiedTopology: true
 });
 mongoose.connection.on('connected', () => {
   console.log('Connected to mongo instance');
